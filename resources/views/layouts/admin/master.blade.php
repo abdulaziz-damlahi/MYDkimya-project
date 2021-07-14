@@ -304,15 +304,15 @@
                             </a>
                         </li>
                        @endif
-                @if ($section_arr['counter_section'] == 1)
-                    <li class="nav-item {{ (request()->is('admin/counter/create') ||
-                                            request()->is('admin/counter/*/edit')) ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin/counter/create') }}">
-                            <i class="fas fa-clock menu-icon"></i>
-                            <span class="menu-title">{{ __('menu.counters') }}</span>
-                        </a>
-                    </li>
-                @endif
+{{--                @if ($section_arr['counter_section'] == 1)--}}
+{{--                    <li class="nav-item {{ (request()->is('admin/counter/create') ||--}}
+{{--                                            request()->is('admin/counter/*/edit')) ? 'active' : '' }}">--}}
+{{--                        <a class="nav-link" href="{{ url('admin/counter/create') }}">--}}
+{{--                            <i class="fas fa-clock menu-icon"></i>--}}
+{{--                            <span class="menu-title">{{ __('menu.counters') }}</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
                    @if ($section_arr['service_section'] == 1)
                         <li class="nav-item {{ (request()->is('admin/service/create') ||
                                             request()->is('admin/service/*/edit')) ? 'active' : '' }}">
@@ -322,70 +322,70 @@
                             </a>
                         </li>
                        @endif
-                @if ($section_arr['team_section'] == 1)
-                    <li class="nav-item {{ (request()->is('admin/team/create') ||
-                                            request()->is('admin/team/*/edit')) ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin/team/create') }}">
-                            <i class="fas fa-users menu-icon"></i>
-                            <span class="menu-title">{{ __('menu.teams') }}</span>
-                        </a>
-                    </li>
-                @endif
-                @if ($section_arr['skill_section'] == 1)
-                    <li class="nav-item {{ (request()->is('admin/skill/create') ||
-                                            request()->is('admin/skill/*/edit')) ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin/skill/create') }}">
-                            <i class="fas fa-toolbox menu-icon"></i>
-                            <span class="menu-title">{{ __('menu.skills') }}</span>
-                        </a>
-                    </li>
-                @endif
-                    @if ($section_arr['project_section'] == 1)
-                        <li class="nav-item {{ (request()->is('admin/project/create') ||
-                                            request()->is('admin/project/*/edit')) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('admin/project/create') }}">
-                                <i class="fas fa-project-diagram menu-icon"></i>
-                                <span class="menu-title">{{ __('menu.projects') }}</span>
-                            </a>
-                        </li>
-                        @endif
+{{--                @if ($section_arr['team_section'] == 1)--}}
+{{--                    <li class="nav-item {{ (request()->is('admin/team/create') ||--}}
+{{--                                            request()->is('admin/team/*/edit')) ? 'active' : '' }}">--}}
+{{--                        <a class="nav-link" href="{{ url('admin/team/create') }}">--}}
+{{--                            <i class="fas fa-users menu-icon"></i>--}}
+{{--                            <span class="menu-title">{{ __('menu.teams') }}</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
+{{--                @if ($section_arr['skill_section'] == 1)--}}
+{{--                    <li class="nav-item {{ (request()->is('admin/skill/create') ||--}}
+{{--                                            request()->is('admin/skill/*/edit')) ? 'active' : '' }}">--}}
+{{--                        <a class="nav-link" href="{{ url('admin/skill/create') }}">--}}
+{{--                            <i class="fas fa-toolbox menu-icon"></i>--}}
+{{--                            <span class="menu-title">{{ __('menu.skills') }}</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
+{{--                    @if ($section_arr['project_section'] == 1)--}}
+{{--                        <li class="nav-item {{ (request()->is('admin/project/create') ||--}}
+{{--                                            request()->is('admin/project/*/edit')) ? 'active' : '' }}">--}}
+{{--                            <a class="nav-link" href="{{ url('admin/project/create') }}">--}}
+{{--                                <i class="fas fa-project-diagram menu-icon"></i>--}}
+{{--                                <span class="menu-title">{{ __('menu.projects') }}</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endif--}}
 
-                @if ($section_arr['sponsor_section'] == 1)
-                    <li class="nav-item {{ (request()->is('admin/sponsor/create') ||
-                                            request()->is('admin/sponsor/*/edit')) ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin/sponsor/create') }}">
-                            <i class="fas fa-handshake menu-icon"></i>
-                            <span class="menu-title">{{ __('menu.sponsors') }}</span>
-                        </a>
-                    </li>
-                @endif
-                @if ($section_arr['price_section'] == 1)
-                    <li class="nav-item {{ (request()->is('admin/price/create') ||
-                                            request()->is('admin/price/*/edit')) ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin/price/create') }}">
-                            <i class="fas fa-money-bill menu-icon"></i>
-                            <span class="menu-title">{{ __('menu.prices') }}</span>
-                        </a>
-                    </li>
-                @endif
-                @if ($section_arr['faq_section'] == 1)
-                    <li class="nav-item {{ (request()->is('admin/faq/create') ||
-                                            request()->is('admin/faq/*/edit')) ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin/faq/create') }}">
-                            <i class="fas fa-question-circle menu-icon"></i>
-                            <span class="menu-title">{{ __('menu.faqs') }}</span>
-                        </a>
-                    </li>
-                @endif
-                @if ($section_arr['client_section'] == 1)
-                    <li class="nav-item {{ (request()->is('admin/testimonial/create') ||
-                                            request()->is('admin/testimonial/*/edit')) ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin/testimonial/create') }}">
-                            <i class="fas fa-comment-alt menu-icon"></i>
-                            <span class="menu-title">{{ __('menu.testimonials') }}</span>
-                        </a>
-                    </li>
-                @endif
+{{--                @if ($section_arr['sponsor_section'] == 1)--}}
+{{--                    <li class="nav-item {{ (request()->is('admin/sponsor/create') ||--}}
+{{--                                            request()->is('admin/sponsor/*/edit')) ? 'active' : '' }}">--}}
+{{--                        <a class="nav-link" href="{{ url('admin/sponsor/create') }}">--}}
+{{--                            <i class="fas fa-handshake menu-icon"></i>--}}
+{{--                            <span class="menu-title">{{ __('menu.sponsors') }}</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
+{{--                @if ($section_arr['price_section'] == 1)--}}
+{{--                    <li class="nav-item {{ (request()->is('admin/price/create') ||--}}
+{{--                                            request()->is('admin/price/*/edit')) ? 'active' : '' }}">--}}
+{{--                        <a class="nav-link" href="{{ url('admin/price/create') }}">--}}
+{{--                            <i class="fas fa-money-bill menu-icon"></i>--}}
+{{--                            <span class="menu-title">{{ __('menu.prices') }}</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
+{{--                @if ($section_arr['faq_section'] == 1)--}}
+{{--                    <li class="nav-item {{ (request()->is('admin/faq/create') ||--}}
+{{--                                            request()->is('admin/faq/*/edit')) ? 'active' : '' }}">--}}
+{{--                        <a class="nav-link" href="{{ url('admin/faq/create') }}">--}}
+{{--                            <i class="fas fa-question-circle menu-icon"></i>--}}
+{{--                            <span class="menu-title">{{ __('menu.faqs') }}</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
+{{--                @if ($section_arr['client_section'] == 1)--}}
+{{--                    <li class="nav-item {{ (request()->is('admin/testimonial/create') ||--}}
+{{--                                            request()->is('admin/testimonial/*/edit')) ? 'active' : '' }}">--}}
+{{--                        <a class="nav-link" href="{{ url('admin/testimonial/create') }}">--}}
+{{--                            <i class="fas fa-comment-alt menu-icon"></i>--}}
+{{--                            <span class="menu-title">{{ __('menu.testimonials') }}</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
                 @if ($section_arr['gallery_section'] == 1)
                     <li class="nav-item  {{ (request()->is('admin/gallery/create') ||
                                              request()->is('admin/gallery/*/edit')) ? 'active' : '' }}">
