@@ -31,8 +31,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="col-12 col-sm-6 col-xl-4">
             <!-- Card -->
             <div class="card box-margin">
@@ -83,37 +81,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-12 col-sm-6 col-xl">
-            <!-- Card -->
-            <div class="card box-margin">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <!-- Title -->
-                            <h6 class="font-14 text-uppercase">
-                                {{ __('content.sections') }}
-                            </h6>
-                            <!-- Heading -->
-                            <a href="{{ url('admin/section/create') }}">
-                                <span class="font-24 text-dark mb-0">
-                                    {{ __('content.show') }} / {{ __('content.hide') }}
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col-auto">
-                            <!-- Icon -->
-                            <div class="icon">
-                                <i class="fas fa-puzzle-piece font-46 text-primary"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
     </div>
     <!-- / .row -->
-
 @endsection

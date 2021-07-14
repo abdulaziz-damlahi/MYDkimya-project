@@ -38,21 +38,21 @@ class BlogController extends Controller
         $contact_section = ContactSection::where('language_id', $language->id)->first();
         $contacts = Contact::where('language_id', $language->id)->orderBy('order', 'asc')->get();
         $pages = Page::where('language_id', $language->id)->where('status', 1)->orderBy('order', 'asc')->get();
-        $blogs = Blog::join("categories",'categories.id', '=', 'blogs.category_id')
+        $blogs = Blog::join("categories", 'categories.id', '=', 'blogs.category_id')
             ->where('categories.language_id', $language->id)
             ->where('categories.status', 1)
             ->where('blogs.status', 1)
             ->orderBy('blogs.id', 'desc')
             ->paginate(6);
 
-        return view('frontend.blog.index', compact( 'blogs', 'site_info', 'google_analytic',
+        return view('frontend.blog.index', compact('blogs', 'site_info', 'google_analytic',
             'socials', 'breadcrumb', 'sponsors', 'contact_section', 'contacts', 'pages'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
@@ -79,7 +79,7 @@ class BlogController extends Controller
             ->take(3)
             ->get();
 
-        if(isset($blog)){
+        if (isset($blog)) {
             // Update view column
             Blog::find($blog->id)->update(
                 ['view' => $blog->view + 1]
@@ -96,14 +96,14 @@ class BlogController extends Controller
             ->get();
 
         return view('frontend.blog.show', compact('blog', 'blog_count_categories', 'comments',
-            'recent_posts','site_info', 'google_analytic', 'socials',
+            'recent_posts', 'site_info', 'google_analytic', 'socials',
             'breadcrumb', 'contact_section', 'contacts', 'pages'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  string  $category_name
+     * @param string $category_name
      * @return \Illuminate\Http\Response
      */
     public function category_show($category_name)
@@ -120,14 +120,14 @@ class BlogController extends Controller
         $contact_section = ContactSection::where('language_id', $language->id)->first();
         $contacts = Contact::where('language_id', $language->id)->orderBy('order', 'asc')->get();
         $pages = Page::where('language_id', $language->id)->where('status', 1)->orderBy('order', 'asc')->get();
-        $blogs = Blog::join("categories",'categories.id', '=', 'blogs.category_id')
+        $blogs = Blog::join("categories", 'categories.id', '=', 'blogs.category_id')
             ->where('categories.language_id', $language->id)
             ->where('categories.category_slug', '=', $category_name)
             ->where('blogs.status', 1)
             ->orderBy('blogs.id', 'desc')
             ->paginate(6);
-        $category =  Category::where('language_id', $language->id)
-        ->where('category_slug', '=', $category_name)->first();
+        $category = Category::where('language_id', $language->id)
+            ->where('category_slug', '=', $category_name)->first();
 
         if (count($blogs) < 1) {
             abort(404);
@@ -162,17 +162,17 @@ class BlogController extends Controller
         // Search
         $search = $request->get('search');
 
-        $blogs = Blog::join("categories",'categories.id', '=', 'blogs.category_id')
+        $blogs = Blog::join("categories", 'categories.id', '=', 'blogs.category_id')
             ->where('categories.language_id', $language->id)
             ->where('categories.status', 1)
             ->where('blogs.status', 1)
-            ->where('title', 'like', '%'.$search.'%')
+            ->where('title', 'like', '%' . $search . '%')
             ->orderBy('blogs.id', 'desc')
             ->get();
 
-        return view('frontend.blog.search-index', compact ('blogs',
+        return view('frontend.blog.search-index', compact('blogs',
             'site_info', 'google_analytic', 'socials', 'breadcrumb', 'sponsors',
-              'contact_section', 'contacts', 'pages'));
+            'contact_section', 'contacts', 'pages'));
     }
 
 }
