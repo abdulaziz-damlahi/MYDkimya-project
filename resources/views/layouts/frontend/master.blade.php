@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 <html dir="@if (session()->has('language_direction_from_dropdown')) @if(session()->get('language_direction_from_dropdown') == 1) {{ __('rtl') }} @else {{ __('ltr') }} @endif @else {{ __('ltr') }} @endif" lang="@if (session()->has('language_code_from_dropdown')){{ str_replace('_', '-', session()->get('language_code_from_dropdown')) }}@else{{ str_replace('_', '-',   $language->language_code) }}@endif">
 <head>
     <!-- Meta Tags -->
@@ -74,7 +76,6 @@
 
 </head>
 <body>
-
 @if ($section_arr['preloader'] == 1)
     <!-- Preloader Start -->
     <div class="preloader"></div>
@@ -184,12 +185,15 @@
                                     @if ($section_arr['service_section'] == 1) <li><a href="{{ url('/'.'#service') }}">{{ __('frontend.services') }}</a></li> @endif
                                     @if ($section_arr['project_section'] == 1) <li><a href="{{ url('/'.'#case-study') }}">{{ __('frontend.projects') }}</a></li> @endif
                                     @if ($section_arr['blog_section'] == 1) <li><a href="{{ url('/'.'#news') }}">{{ __('frontend.news') }}</a></li> @endif
+
+                                    @if ($section_arr['contact_section'] == 1) <li><a href="{{ url('/'.'#contact') }}">{{ __('frontend.contact') }}</a></li> @endif
                                     @if ($section_arr['page_menu'] == 1)
                                         <li class="has-sub right-view">
                                             <a href="#">{{ __('frontend.pages') }}</a>
                                             <ul class="sub-menu">
                                                 @if ($section_arr['team_section'] == 1) <li><a href="{{ url('/'.'#team') }}">{{ __('frontend.teams') }}</a></li> @endif
                                                 @if ($section_arr['gallery_section'] == 1) <li><a href="{{ url('gallery') }}">{{ __('frontend.gallery') }}</a></li> @endif
+                                                <li><a href="http://127.0.0.1:8000/blog/category/bank-accounts">bank accounts</a></li>
                                                 @foreach ($pages as $page)
                                                     @if ($page->display_footer_menu != 1)
                                                         <li><a href="{{ url('page/'.$page->page_slug) }}">{{ $page->page_title }}</a></li>
@@ -199,7 +203,6 @@
                                             </ul>
                                         </li>
                                     @endif
-                                    @if ($section_arr['contact_section'] == 1) <li><a href="{{ url('/'.'#contact') }}">{{ __('frontend.contact') }}</a></li> @endif
                                 </ul>
                             </nav>
                         </div>
@@ -213,6 +216,7 @@
 
 
 @yield('content')
+
 
 
 <!-- Footer Area Start -->

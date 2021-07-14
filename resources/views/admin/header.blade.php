@@ -1,357 +1,175 @@
-@extends('layouts.admin.master')
-
-@section('content')
-
-    <!-- Include Alert Blade -->
-    @include('admin.alert.alert')
-
-    <div class="row">
-
-            <div class="col-12 col-sm-6 col-xl-4">
-                <!-- Card -->
-                <div class="card box-margin">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <!-- Title -->
-                                <h6 class="text-uppercase font-14">{{ __('content.blogs') }}</h6>
-
-                                <!-- Heading -->
-                                <span class="font-24 text-dark mb-0">
-                                 @if ($blogs_count == 0) 0 @else {{ $blogs_count }} @endif
-                                </span>
+@section('header')
+<!-- header Start test -->
+<header class="header-style-two" data-scroll-index="0">
+    <div class="header-wrapper">
+        <div class="header-top-area bg-gradient-color d-none d-lg-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 header-top-left-part">
+                        @if (!empty($site_info->address)) <span class="address" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="{{ $site_info->address }}"><i
+                                class="webexflaticon flaticon-placeholder-1"></i> {{ \Illuminate\Support\Str::limit($site_info->address, 30, $end='...') }}</span> @endif
+                        @if (!empty($site_info->email)) <span class="phone"><i class="webexflaticon flaticon-send"></i> {{ $site_info->email }}</span> @endif
+                    </div>
+                    <div class="col-lg-6 header-top-right-part text-right">
+                        <ul class="social-links">
+                            @foreach($socials as $social)
+                                <li><a href="{{ $social->link }}" target="_blank"><i
+                                            class="{{ $social->social_media }}"></i></a></li>
+                            @endforeach
+                        </ul>
+                        @if (count($display_dropdowns) > 0)
+                            <div class="language">
+                                <a class="language-btn" href="#"><i class="webexflaticon flaticon-internet"></i>
+                                    @if (session()->has('language_name_from_dropdown')) {{ session()->get('language_name_from_dropdown') }} @else {{ $language->language_name }} @endif
+                                </a>
+                                <ul class="language-dropdown">
+                                    @foreach ($display_dropdowns as $display_dropdown)
+                                        <li>
+                                            <a href="{{ url('language/set-locale/'.$display_dropdown->id) }}">{{ $display_dropdown->language_name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
-
-                            <div class="col-auto">
-                                <!-- Icon -->
-                                <div class="icon">
-                                    <i class="fab fa-blogger-b font-46 text-primary"></i>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-navigation-area two-layers-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="navbar-brand logo f-left mrt-10 mrt-md-0" href="{{ url('/') }}">
+                            @if (!empty($general_site_image->site_white_logo_image))
+                                <img id="logo-image" class="img-center"
+                                     src="{{ asset('uploads/img/general/'.$general_site_image->site_white_logo_image) }}"
+                                     alt="logo image">
+                            @else
+                                <img id="logo-image" class="img-center"
+                                     src="{{ asset('uploads/common_dummy/logo.png') }}" alt="logo image">
+                            @endif
+                        </a>
+                        <div class="mobile-menu-right"></div>
+                        <div class="header-searchbox-style-two d-none d-xl-block">
+                            <div class="side-panel side-panel-trigger text-right d-none d-lg-block">
+                                <span class="bar1"></span>
+                                <span class="bar2"></span>
+                                <span class="bar3"></span>
+                            </div>
+                            <div class="show-searchbox">
+                                <a href="#"><i class="webex-icon-Search"></i></a>
+                            </div>
+                            <div class="toggle-searchbox">
+                                <form id="searchform-all" action="{{ route('blog-page.search') }}" method="POST">
+                                    @csrf
+                                    <div>
+                                        <input type="text" id="s" class="form-control" name="search"
+                                               placeholder="{{ __('frontend.search') }}" required>
+                                        <div class="input-box">
+                                            <button type="submit" id="searchsubmit"><i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="side-panel-content">
+                            <div class="close-icon">
+                                <button><i class="webex-icon-cross"></i></button>
+                            </div>
+                            <div class="side-panel-logo mrb-30">
+                                <a href="{{ url('/') }}">
+                                    @if (!empty($general_site_image->site_white_logo_image))
+                                        <img
+                                            src="{{ asset('uploads/img/general/'.$general_site_image->site_white_logo_image) }}"
+                                            alt="logo image">
+                                    @else
+                                        <img src="{{ asset('uploads/common_dummy/logo.png') }}" alt="logo image"
+                                             style="height: 72px;">
+                                    @endif
+                                </a>
+                            </div>
+                            <div class="side-info mrb-30">
+                                <div class="side-panel-element mrb-25">
+                                    <h4 class="mrb-10">{{ __('frontend.office_address') }}</h4>
+                                    <ul class="list-items">
+                                        @if (!empty($site_info->address))
+                                            <li><span class="fa fa-map-marker-alt mrr-10 text-primary-color"></span><a
+                                                    href="@if (!empty($site_info->address_map_link)) {{ $site_info->address_map_link }} @else # @endif">{{ $site_info->address }}</a>
+                                            </li> @endif
+                                        @if (!empty($site_info->email))
+                                            <li><span
+                                                    class="fas fa-envelope mrr-10 text-primary-color"></span>{{ $site_info->email }}
+                                            </li> @endif
+                                        @if (!empty($site_info->phone))
+                                            <li><span
+                                                    class="fas fa-phone-alt mrr-10 text-primary-color"></span>{{ $site_info->phone }}
+                                            </li> @endif
+                                    </ul>
                                 </div>
                             </div>
+                            <h4 class="mrb-15">{{ __('frontend.social_list') }}</h4>
+                            <ul class="social-list">
+                                @foreach ($socials as $social)
+                                    <li><a href="@if (!empty($social->link)) {{ $social->link }} @else # @endif"><i
+                                                class="{{ $social->social_media }}"></i></a></li>
+                                @endforeach
+                            </ul>
                         </div>
-                    </div>
-                </div>
-            </div>
+                        <div class="main-menu f-right">
+                            <nav id="mobile-menu-right">
+                                <ul class="one-pagenav">
+                                    <li><a href="#home" data-scroll-nav="0">{{ __('frontend.home') }}</a></li>
+                                    @if ($section_arr['about_section'] == 1)
+                                        <li><a href="#about" data-scroll-nav="1">{{ __('frontend.about') }}</a>
+                                        </li> @endif
+                                    @if ($section_arr['service_section'] == 1)
+                                        <li><a href="#service" data-scroll-nav="2">{{ __('frontend.services') }}</a>
+                                        </li> @endif
+                                    {{--                                    @if ($section_arr['project_section'] == 1)--}}
+                                    {{--                                        <li><a href="#case-study" data-scroll-nav="4">{{ __('frontend.projects') }}</a>--}}
+                                    {{--                                        </li> @endif--}}
+                                    @if ($section_arr['blog_section'] == 1)
+                                        <li><a href="#news" data-scroll-nav="5">{{ __('frontend.news') }}</a>
+                                        </li> @endif
+                                    @if ($section_arr['page_menu'] == 1)
+                                        <li class="has-sub right-view">
+                                            <a href="#">{{ __('frontend.pages') }}</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="http://127.0.0.1:8000/blog/category/documents"
+                                                    >{{ __('frontend.teams') }}</a>
+                                                </li>
+                                                @if ($section_arr['gallery_section'] == 1)
+                                                    <li><a href="{{ url('gallery') }}">{{ __('frontend.gallery') }}</a>
+                                                    </li> @endif
+                                                <li><a href="http://127.0.0.1:8000/blog/category/bank-accounts"
+                                                    >bank accounts</a>
+                                                </li>
+                                                @foreach ($pages as $page)
+                                                    @if ($page->display_footer_menu != 1)
+                                                        <li>
+                                                            <a href="{{ url('page/'.$page->page_slug) }}">{{ $page->page_title }}</a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                                @php unset($page); @endphp
+                                            </ul>
+                                        </li>
+                                    @endif
+                                    @if ($section_arr['contact_section'] == 1)
+                                        <li><a href="#contact" data-scroll-nav="6">{{ __('frontend.contact') }}</a>
+                                        </li> @endif
 
-
-        <div class="col-12 col-sm-6 col-xl-4">
-            <!-- Card -->
-            <div class="card box-margin">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <!-- Title -->
-                            <h6 class="text-uppercase font-14">{{ __('content.features') }}</h6>
-
-                            <!-- Heading -->
-                            <span class="font-24 text-dark mb-0">
-                                 @if ($features_count == 0) 0 @else {{ $features_count }} @endif
-                                </span>
-                        </div>
-
-                        <div class="col-auto">
-                            <!-- Icon -->
-                            <div class="icon">
-                                <i class="fas fa-puzzle-piece font-46 text-primary"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-{{--        <div class="col-12 col-sm-6 col-xl-4">--}}
-{{--            <!-- Card -->--}}
-{{--            <div class="card box-margin">--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="row align-items-center">--}}
-{{--                        <div class="col">--}}
-{{--                            <!-- Title -->--}}
-{{--                            <h6 class="text-uppercase font-14">{{ __('content.counters') }}</h6>--}}
-
-{{--                            <!-- Heading -->--}}
-{{--                            <span class="font-24 text-dark mb-0">--}}
-{{--                                 @if ($counters_count == 0) 0 @else {{ $counters_count }} @endif--}}
-{{--                                </span>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-auto">--}}
-{{--                            <!-- Icon -->--}}
-{{--                            <div class="icon">--}}
-{{--                                <i class="fas fa-clock font-46 text-primary"></i>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <div class="col-12 col-sm-6 col-xl-4">--}}
-{{--            <!-- Card -->--}}
-{{--            <div class="card box-margin">--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="row align-items-center">--}}
-{{--                        <div class="col">--}}
-{{--                            <!-- Title -->--}}
-{{--                            <h6 class="text-uppercase font-14">{{ __('content.services') }}</h6>--}}
-
-{{--                            <!-- Heading -->--}}
-{{--                            <span class="font-24 text-dark mb-0">--}}
-{{--                                 @if ($services_count == 0) 0 @else {{ $services_count }} @endif--}}
-{{--                                </span>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-auto">--}}
-{{--                            <!-- Icon -->--}}
-{{--                            <div class="icon">--}}
-{{--                                <i class="fas fa-people-carry font-46 text-primary"></i>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <div class="col-12 col-sm-6 col-xl-4">--}}
-{{--            <!-- Card -->--}}
-{{--            <div class="card box-margin">--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="row align-items-center">--}}
-{{--                        <div class="col">--}}
-{{--                            <!-- Title -->--}}
-{{--                            <h6 class="text-uppercase font-14">{{ __('content.teams') }}</h6>--}}
-
-{{--                            <!-- Heading -->--}}
-{{--                            <span class="font-24 text-dark mb-0">--}}
-{{--                                 @if ($teams_count == 0) 0 @else {{ $teams_count }} @endif--}}
-{{--                                </span>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-auto">--}}
-{{--                            <!-- Icon -->--}}
-{{--                            <div class="icon">--}}
-{{--                                <i class="fas fa-users font-46 text-primary"></i>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-
-{{--        <div class="col-12 col-sm-6 col-xl-4">--}}
-{{--            <!-- Card -->--}}
-{{--            <div class="card box-margin">--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="row align-items-center">--}}
-{{--                        <div class="col">--}}
-{{--                            <!-- Title -->--}}
-{{--                            <h6 class="text-uppercase font-14">{{ __('content.skills') }}</h6>--}}
-
-{{--                            <!-- Heading -->--}}
-{{--                            <span class="font-24 text-dark mb-0">--}}
-{{--                                 @if ($skills_count == 0) 0 @else {{ $skills_count }} @endif--}}
-{{--                                </span>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-auto">--}}
-{{--                            <!-- Icon -->--}}
-{{--                            <div class="icon">--}}
-{{--                                <i class="fas fa-toolbox font-46 text-primary"></i>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <div class="col-12 col-sm-6 col-xl-4">--}}
-{{--            <!-- Card -->--}}
-{{--            <div class="card box-margin">--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="row align-items-center">--}}
-{{--                        <div class="col">--}}
-{{--                            <!-- Title -->--}}
-{{--                            <h6 class="text-uppercase font-14">{{ __('content.projects') }}</h6>--}}
-
-{{--                            <!-- Heading -->--}}
-{{--                            <span class="font-24 text-dark mb-0">--}}
-{{--                                 @if ($projects_count == 0) 0 @else {{ $projects_count }} @endif--}}
-{{--                                </span>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-auto">--}}
-{{--                            <!-- Icon -->--}}
-{{--                            <div class="icon">--}}
-{{--                                <i class="fas fa-project-diagram font-46 text-primary"></i>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <div class="col-12 col-sm-6 col-xl-4">--}}
-{{--            <!-- Card -->--}}
-{{--            <div class="card box-margin">--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="row align-items-center">--}}
-{{--                        <div class="col">--}}
-{{--                            <!-- Title -->--}}
-{{--                            <h6 class="text-uppercase font-14">{{ __('content.sponsors') }}</h6>--}}
-
-{{--                            <!-- Heading -->--}}
-{{--                            <span class="font-24 text-dark mb-0">--}}
-{{--                                 @if ($sponsors_count == 0) 0 @else {{ $sponsors_count }} @endif--}}
-{{--                                </span>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-auto">--}}
-{{--                            <!-- Icon -->--}}
-{{--                            <div class="icon">--}}
-{{--                                <i class="fas fa-handshake font-46 text-primary"></i>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <div class="col-12 col-sm-6 col-xl-4">--}}
-{{--            <!-- Card -->--}}
-{{--            <div class="card box-margin">--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="row align-items-center">--}}
-{{--                        <div class="col">--}}
-{{--                            <!-- Title -->--}}
-{{--                            <h6 class="text-uppercase font-14">{{ __('content.prices') }}</h6>--}}
-
-{{--                            <!-- Heading -->--}}
-{{--                            <span class="font-24 text-dark mb-0">--}}
-{{--                                 @if ($prices_count == 0) 0 @else {{ $prices_count }} @endif--}}
-{{--                                </span>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-auto">--}}
-{{--                            <!-- Icon -->--}}
-{{--                            <div class="icon">--}}
-{{--                                <i class="fas fa-money-bill font-46 text-primary"></i>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-
-{{--        <div class="col-12 col-sm-6 col-xl-4">--}}
-{{--            <!-- Card -->--}}
-{{--            <div class="card box-margin">--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="row align-items-center">--}}
-{{--                        <div class="col">--}}
-{{--                            <!-- Title -->--}}
-{{--                            <h6 class="text-uppercase font-14">{{ __('content.faqs') }}</h6>--}}
-
-{{--                            <!-- Heading -->--}}
-{{--                            <span class="font-24 text-dark mb-0">--}}
-{{--                                 @if ($faqs_count == 0) 0 @else {{ $faqs_count }} @endif--}}
-{{--                                </span>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-auto">--}}
-{{--                            <!-- Icon -->--}}
-{{--                            <div class="icon">--}}
-{{--                                <i class="fas fa-question-circle font-46 text-primary"></i>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <div class="col-12 col-sm-6 col-xl-4">--}}
-{{--            <!-- Card -->--}}
-{{--            <div class="card box-margin">--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="row align-items-center">--}}
-{{--                        <div class="col">--}}
-{{--                            <!-- Title -->--}}
-{{--                            <h6 class="text-uppercase font-14">{{ __('content.testimonials') }}</h6>--}}
-
-{{--                            <!-- Heading -->--}}
-{{--                            <span class="font-24 text-dark mb-0">--}}
-{{--                                 @if ($testimonials_count == 0) 0 @else {{ $testimonials_count }} @endif--}}
-{{--                                </span>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-auto">--}}
-{{--                            <!-- Icon -->--}}
-{{--                            <div class="icon">--}}
-{{--                                <i class="fas fa-comment-alt font-46 text-primary"></i>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-        <div class="col-12 col-sm-6 col-xl-4">
-            <!-- Card -->
-            <div class="card box-margin">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <!-- Title -->
-                            <h6 class="text-uppercase font-14">{{ __('content.pages') }}</h6>
-
-                            <!-- Heading -->
-                            <span class="font-24 text-dark mb-0">
-                                 @if ($pages_count == 0) 0 @else {{ $pages_count }} @endif
-                                </span>
-                        </div>
-
-                        <div class="col-auto">
-                            <!-- Icon -->
-                            <div class="icon">
-                                <i class="fas fa-file-alt font-46 text-primary"></i>
-                            </div>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-12 col-sm-6 col-xl">
-            <!-- Card -->
-            <div class="card box-margin">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <!-- Title -->
-                            <h6 class="font-14 text-uppercase">
-                                {{ __('content.sections') }}
-                            </h6>
-                            <!-- Heading -->
-                            <a href="{{ url('admin/section/create') }}">
-                                <span class="font-24 text-dark mb-0">
-                                    {{ __('content.show') }} / {{ __('content.hide') }}
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col-auto">
-                            <!-- Icon -->
-                            <div class="icon">
-                                <i class="fas fa-puzzle-piece font-46 text-primary"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
     </div>
-    <!-- / .row -->
-
+</header>
+<!-- header End -->
 @endsection
