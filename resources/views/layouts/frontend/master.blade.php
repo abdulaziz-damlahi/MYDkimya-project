@@ -226,7 +226,7 @@
             <div class="footer-main-area" data-background="{{ asset('assets/frontend/images/footer-bg.png') }}">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xl-4 col-lg-6 col-md-6">
+                        <div class="col-xl-6 col-lg-6 col-md-6">
                             <div class="widget footer-widget">
                                 @if (!empty($general_site_image->site_white_logo_image)) <img src="{{ asset('uploads/img/general/'.$general_site_image->site_colored_logo_image) }}" class="mrb-20" alt="footer image"> @endif
                                 <address class="mrb-25">
@@ -239,7 +239,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-xl-2 col-lg-6 col-md-6">
+                        <div class="col-xl-3 col-lg-6 col-md-6">
                             <div class="widget footer-widget">
                                 <h5 class="widget-title text-white mrb-30">Useful Links</h5>
                                 <ul class="footer-widget-list">
@@ -253,20 +253,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="widget footer-widget">
-                                <h5 class="widget-title text-white mrb-30">{{ __('frontend.help') }}</h5>
-                                <ul class="footer-widget-list">
-                                    @foreach ($pages as $page)
-                                        @if ($page->display_footer_menu == 1)
-                                            <li>
-                                                <a href="{{ url('page/'.$page->page_slug) }}">{{ $page->page_title }}</a>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
+
                         <div class="col-xl-3 col-lg-6 col-md-6">
                             <div class="widget footer-widget">
                                 <h5 class="widget-title text-white mrb-30">{{ __('frontend.contact_info') }}</h5>
