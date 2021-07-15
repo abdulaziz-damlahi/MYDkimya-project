@@ -191,7 +191,7 @@
                                         <li class="has-sub right-view">
                                             <a href="#">{{ __('frontend.pages') }}</a>
                                             <ul class="sub-menu">
-                                                @if ($section_arr['team_section'] == 1) <li><a href="{{ url('/'.'#team') }}">{{ __('frontend.teams') }}</a></li> @endif
+                                                @if ($section_arr['team_section'] == 1) <li><a href="http://127.0.0.1:8000/blog/category/documents">{{ __('frontend.teams') }}</a></li> @endif
                                                 @if ($section_arr['gallery_section'] == 1) <li><a href="{{ url('gallery') }}">{{ __('frontend.gallery') }}</a></li> @endif
                                                 <li><a href="http://127.0.0.1:8000/blog/category/bank-accounts">bank accounts</a></li>
                                                 @foreach ($pages as $page)
