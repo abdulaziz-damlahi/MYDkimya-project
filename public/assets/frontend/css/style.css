@@ -1301,7 +1301,7 @@ section.anim-object {
   left: auto;
 }
 .header-style-one .header-wrapper .header-navigation-area .main-menu ul li.has-sub > a::before {
-  content: "\f067";
+  /*content: "\f067";*/
   position: absolute;
   right: -16px;
   top: 50%;
@@ -1479,7 +1479,7 @@ section.anim-object {
   left: auto;
 }
 .header-style-two .header-wrapper .header-navigation-area .main-menu ul li.has-sub > a::before {
-  content: "\f067";
+  /*content: "\f067";*/
   position: absolute;
   right: -18px;
   top: 50%;
@@ -1554,7 +1554,7 @@ section.anim-object {
   visibility: hidden;
 }
 .header-style-two .header-wrapper .header-navigation-area .main-menu ul li ul.sub-menu li.has-sub-child > a::before {
-  content: "\f067";
+  /*content: "\f067";*/
   position: absolute;
   right: 10px;
   top: 50%;

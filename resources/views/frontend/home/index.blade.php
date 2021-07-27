@@ -84,8 +84,6 @@
     <div class="preloader"></div>
     <!-- Preloader End -->
 @endif
-
-{{--@section('header')--}}
     <!-- header Start test -->
     <header class="header-style-two" data-scroll-index="0">
         <div class="header-wrapper">
@@ -208,24 +206,19 @@
                             <div class="main-menu f-right">
                                 <nav id="mobile-menu-right">
                                     <ul class="one-pagenav">
-                                        <li><a href="#home" data-scroll-nav="0">{{ __('frontend.home') }}</a></li>
+                                        <li><a href="#home" data-scroll-nav="0"style="padding-left: 40px"><i class="fa fa-home" ></i>  {{ __('frontend.home') }}</a></li>
                                         @if ($section_arr['about_section'] == 1)
-                                            <li><a href="#about" data-scroll-nav="1">{{ __('frontend.about') }}</a>
+                                            <li><a href="#about" data-scroll-nav="1"style="padding-left: 40px"><i class="fa fa-info-circle"></i>  {{ __('frontend.about') }}</a>
                                             </li> @endif
-                                        @if ($section_arr['service_section'] == 1)
-                                            <li><a href="#service" data-scroll-nav="2">{{ __('frontend.services') }}</a>
+                                        @if ($section_arr['about_section'] == 1)
+                                            <li><a href="#about" data-scroll-nav="5"style="padding-left: 40px"><i class="fas fa-newspaper"></i>  {{ __('frontend.news') }}</a>
                                             </li> @endif
-
-                                        @if ($section_arr['blog_section'] == 1)
-                                            <li><a href="#news" data-scroll-nav="5">{{ __('frontend.news') }}</a>
-                                            </li> @endif
-
                                         @if ($section_arr['contact_section'] == 1)
-                                            <li><a href="#contact" data-scroll-nav="6">{{ __('frontend.contact') }}</a>
+                                            <li><a href="#contact" data-scroll-nav="6"style="padding-left: 40px"><i class="fa fa-at" ></i>  {{ __('frontend.contact') }}</a>
                                             </li> @endif
                                         @if ($section_arr['page_menu'] == 1)
-                                            <li class="has-sub right-view">
-                                                <a href="#">{{ __('frontend.pages') }}</a>
+                                            <li class="has-sub right-view"style="padding-left: 40px">
+                                                <a href="#"><i class="fa fa-plus" ></i>  {{ __('frontend.pages') }}</a>
                                                 <ul class="sub-menu">
                                                     <li><a href="http://127.0.0.1:8000/blog/category/documents"
                                                         >{{ __('frontend.teams') }}</a>
@@ -257,7 +250,7 @@
         </div>
     </header>
     <!-- header End -->
-{{--@endsection--}}
+
 
 
 <!-- Home Slider Start -->

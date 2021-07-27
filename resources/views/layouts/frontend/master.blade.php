@@ -180,16 +180,13 @@
                         <div class="main-menu f-right">
                             <nav id="mobile-menu-right">
                                 <ul class="one-pagenav">
-                                    <li><a href="{{ url('/') }}">{{ __('frontend.home') }}</a></li>
-                                    @if ($section_arr['about_section'] == 1) <li><a href="{{ url('/'.'#about') }}">{{ __('frontend.about') }}</a></li> @endif
-                                    @if ($section_arr['service_section'] == 1) <li><a href="{{ url('/'.'#service') }}">{{ __('frontend.services') }}</a></li> @endif
-                                    @if ($section_arr['project_section'] == 1) <li><a href="{{ url('/'.'#case-study') }}">{{ __('frontend.projects') }}</a></li> @endif
-                                    @if ($section_arr['blog_section'] == 1) <li><a href="{{ url('/'.'#news') }}">{{ __('frontend.news') }}</a></li> @endif
-
-                                    @if ($section_arr['contact_section'] == 1) <li><a href="{{ url('/'.'#contact') }}">{{ __('frontend.contact') }}</a></li> @endif
+                                    <li><a href="{{ url('/') }}"style="padding-left: 40px"><i class="fa fa-home" ></i>  {{ __('frontend.home') }}</a></li>
+                                    @if ($section_arr['about_section'] == 1) <li><a href="{{ url('/'.'#about') }}"style="padding-left: 40px"><i class="fa fa-info-circle"></i>  {{ __('frontend.about') }}</a></li> @endif
+                                    @if ($section_arr['blog_section'] == 1) <li><a href="{{ url('/'.'#news') }}"style="padding-left: 40px"><i class="fas fa-newspaper"></i>  {{ __('frontend.news') }}</a></li> @endif
+                                    @if ($section_arr['contact_section'] == 1) <li><a href="{{ url('/'.'#contact') }}"style="padding-left: 40px"><i class="fa fa-at" ></i>  {{ __('frontend.contact') }}</a></li> @endif
                                     @if ($section_arr['page_menu'] == 1)
                                         <li class="has-sub right-view">
-                                            <a href="#">{{ __('frontend.pages') }}</a>
+                                            <a href="#"style="padding-left: 40px"><i class="fa fa-plus" ></i>  {{ __('frontend.pages') }}</a>
                                             <ul class="sub-menu">
                                                 @if ($section_arr['team_section'] == 1) <li><a href="http://127.0.0.1:8000/blog/category/documents">{{ __('frontend.teams') }}</a></li> @endif
                                                 @if ($section_arr['gallery_section'] == 1) <li><a href="{{ url('gallery') }}">{{ __('frontend.gallery') }}</a></li> @endif

@@ -81,39 +81,7 @@
                                         </li>
                                     @endforeach
                                 </ol>
-                                <div class="reply-form mrt-40">
-                                    <h3 class="reply-title mrb-30">{{ __('frontend.leave_a_comment') }}</h3>
-                                    <form id="contact-form" action="{{ route('comment.store') }}" method="POST">
-                                        @csrf
-                                        <input name="blog_id" type="hidden" value="{{ Crypt::encrypt($blog->id) }}">
-                                        <input name="page" type="hidden" value="{{ Crypt::encrypt(98) }}">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <input type="text" name="name" class="form-control" placeholder="{{ __('frontend.your_name') }}"  required>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <input type="email" name="email" class="form-control" placeholder="{{ __('frontend.your_email') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <textarea rows="8" name="comment" class="form-control" placeholder="{{ __('frontend.your_comment') }}" required></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <div class="form-group mrb-0">
-                                                    <button type="submit" class="cs-btn-one btn-primary-color btn-sm">
-                                                        {{ __('frontend.post_comment') }}
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <p class="form-message"></p>
-                                </div>
+
                             </div>
                         </div>
                     </div>
