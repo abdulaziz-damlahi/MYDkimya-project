@@ -227,7 +227,7 @@
                                                         <li><a href="{{ url('gallery') }}">{{ __('frontend.gallery') }}</a>
                                                         </li> @endif
                                                     <li><a href="http://127.0.0.1:8000/blog/category/bank-accounts"
-                                                        >bank accounts</a>
+                                                        >bank</a>
                                                     </li>
                                                     @foreach ($pages as $page)
                                                         @if ($page->display_footer_menu != 1)
@@ -1015,114 +1015,6 @@
                 </div>
             </div>
         </section>
-        @if (!empty($contact_section->map_iframe))
-            <div class="contact-section">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12 p-0">
-                            <!-- Google Map Start -->
-                            <div class="mapouter fixed-height">
-                                <div class="gmap_canvas">
-                                    <iframe id="gmap_canvas" src="{{ $contact_section->map_iframe }}"></iframe>
-                                </div>
-                            </div>
-                            <!-- Google Map End -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-    @else
-        <section id="contact" class="contact-section pdt-110 pdb-95 pdb-lg-90"
-                 data-background="{{ asset('assets/frontend/images/bg/abs-bg1.png') }}" data-scroll-index="6">
-            <div class="container">
-                <div class="row mrb-40">
-                    <div class="col-lg-6 col-xl-4">
-                        <div class="contact-block d-flex mrb-30">
-                            <div class="contact-icon">
-                                <i class="webex-icon-map1"></i>
-                            </div>
-                            <div class="contact-details mrl-30">
-                                <h5 class="icon-box-title mrb-10">Our Address</h5>
-                                <p class="mrb-0">60 Broklyn Street USA</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xl-4">
-                        <div class="contact-block d-flex mrb-30">
-                            <div class="contact-icon">
-                                <i class="webex-icon-Phone2"></i>
-                            </div>
-                            <div class="contact-details mrl-30">
-                                <h5 class="icon-box-title mrb-10">Phone Number</h5>
-                                <p class="mrb-0">+96 223-528-8542</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xl-4">
-                        <div class="contact-block d-flex mrb-30">
-                            <div class="contact-icon">
-                                <i class="webex-icon-envelope"></i>
-                            </div>
-                            <div class="contact-details mrl-30">
-                                <h5 class="icon-box-title mrb-10">Email Us</h5>
-                                <p class="mrb-0">example@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-5 col-xl-5">
-                        <h5 class="sub-title-side-line text-primary-color mrt-0 mrb-15">Get In Touch</h5>
-                        <h2 class="faq-title mrb-30">Have Any Questions?</h2>
-                        <p class="mrb-40">Distinctively exploit revolutionary catalysts for chang the Seamlessly optimal
-                            rather than just in web &amp; apps development optimal alignments for intuitive.</p>
-                        <ul class="social-list list-lg list-primary-color list-flat mrb-md-60 clearfix">
-                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-7 col-xl-7">
-                        <div class="contact-form">
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group mrb-25">
-                                            <input type="text" placeholder="Name" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group mrb-25">
-                                            <input type="text" placeholder="Phone" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group mrb-25">
-                                            <input type="email" placeholder="Email" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group mrb-25">
-                                            <textarea rows="4" placeholder="Messages" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <div class="form-group">
-                                            <button type="submit"
-                                                    class="cs-btn-one btn-md btn-round btn-primary-color element-shadow">
-                                                Submit Now
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <div class="contact-section">
             <div class="container-fluid">
                 <div class="row">
@@ -1131,7 +1023,7 @@
                         <div class="mapouter fixed-height">
                             <div class="gmap_canvas">
                                 <iframe id="gmap_canvas"
-                                        src="https://maps.google.com/maps?q=Graz&t=&z=11&ie=UTF8&iwloc=&output=embed"></iframe>
+                                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1597.242407629268!2d34.6025942!3d36.8069008!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1527f38bef99c6b5%3A0x29e7a2d3af00be4b!2sMYD%20Kimya%20Boya!5e0!3m2!1sen!2str!4v1627460001182!5m2!1sen!2str"></iframe>
                                 <a href="https://www.whatismyip-address.com"></a>
                             </div>
                         </div>
