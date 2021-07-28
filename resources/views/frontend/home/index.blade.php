@@ -218,7 +218,7 @@
                                             </li> @endif
                                         @if ($section_arr['page_menu'] == 1)
                                             <li class="has-sub right-view"style="padding-left: 40px">
-                                                <a href="#"><i class="fa fa-plus" ></i>  {{ __('frontend.pages') }}</a>
+                                                <a ><i class="fa fa-plus" ></i>  {{ __('frontend.pages') }}</a>
                                                 <ul class="sub-menu">
                                                     <li><a href="http://127.0.0.1:8000/blog/category/documents"
                                                         >{{ __('frontend.teams') }}</a>
